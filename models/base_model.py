@@ -5,12 +5,13 @@ This module contains the BaseModel Class
 import uuid
 import copy
 from datetime import datetime
+from models import storage
 
 
 class BaseModel():
     """Class representing the BaseModel Class"""
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         # create uuid when instance is initialized and convert to string
         if len(kwargs) is not 0:
             for key, value in kwargs.items():
@@ -27,6 +28,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
+            storage.new()
 
     def __str__(self):
         """Method that returns a string representation of an instance"""
@@ -36,6 +38,7 @@ class BaseModel():
 
     def save(self):
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         dict_ = copy.deepcopy(self.__dict__)
