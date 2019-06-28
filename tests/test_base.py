@@ -5,7 +5,8 @@ Module for unittests for the BaseModel class
 import unittest
 import os
 import datetime
-from  models.base_model import BaseModel
+from models.base_model import BaseModel
+
 
 class TestBaseModelClassCreation(unittest.TestCase):
     """Test class for Base class instantiation tests"""
@@ -42,4 +43,28 @@ class TestBaseModelClassCreation(unittest.TestCase):
         self.assertIsInstance(dict_['updated_at'], str)
         self.assertIsInstance(dict_['created_at'], str)
         self.assertEqual(dict_['__class__'],
-                                 self.x.__class__.__name__)
+                         self.x.__class__.__name__)
+
+
+class TestBaseModelObjectCreation(unittest.TestCase):
+    """
+    Test class for Base Model instantiation with kwargs
+    """
+
+    def setUp(self):
+        self.my_model = BaseModel()
+        self.my_model.name = "Holberton"
+        self.my_model.my_number = 89
+        self.my_model_json = self.my_model.to_dict()
+        self.my_new_model = BaseModel(**self.my_model_json)
+
+    def test_create_object_from_dict(self):
+        self.assertIsInstance(self.my_new_model, BaseModel)
+        self.assertEqual("Holberton", self.my_new_model.name)
+        self.assertEqual(89, self.my_new_model.my_number)
+        self.assertIsNotNone(self.my_new_model.created_at)
+        self.assertIsInstance(self.my_new_model.created_at,
+                              datetime.datetime)
+        self.assertIsInstance(self.my_new_model.updated_at,
+                              datetime.datetime)
+        self.assertFalse(self.my_model is self.my_new_model)
