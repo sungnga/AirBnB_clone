@@ -12,8 +12,8 @@ class BaseModel():
 
     def __init__(self, *args, **kwargs):
         # create uuid when instance is initialized and convert to string
-        if (kwargs):
-            for (key, value in kwargs.items):
+        if kwargs:
+            for key, value in kwargs.items():
                 if (key == 'created_at' or key == 'updated_at'):
                     self.key = datetime.fromisoformat(value)
                 self.key = value
