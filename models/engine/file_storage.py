@@ -8,7 +8,7 @@ from models.base_model import BaseModel
 class FileStorage():
     """Class used for file storage actions"""
 
-    __file_path = "" + ".json"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -20,17 +20,18 @@ class FileStorage():
 
     def save(self):
         with open(self.__file_path, 'w', encoding="utf-8") as fp:
+            jdict_ = {}
             for k, v in self.__objects.items():
                 dict_ = self.__objects[k].to_dict()
-                json_ = json.dumps(dict_)
-            fp.write(json_)
+                jdict_[k] = dict_
+            fp.write(json.dumps(jdict_))
 
     def reload(self):
-        try:
-            with open(self.__file_path, 'r', encoding="utf-8") as fp:
-                json_str = fp.read()
-                for k, v in json_str.items():
-                    dict_ = json.loads(item)
-                    self.new(dict_)
-        except Exception:
-            pass
+         dict_ = {}
+         try:
+             with open(self.__file_path, 'r', encoding="utf-8") as fp:
+                 dict_ = json.load(fp)
+                 for k, v in dict_.items():
+                     self.__objects[k] = BaseModel(**v)
+         except:
+             pass
