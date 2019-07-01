@@ -4,6 +4,22 @@ This module contains the FileStorage class
 """
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
+
+validClasses = {'BaseModel': BaseModel,
+                'User': User,
+                'State': State,
+                'City': City,
+                'Amenity': Amenity,
+                'Place': Place,
+                'Review': Review}
+
 
 class FileStorage():
     """Class used for file storage actions"""
@@ -32,6 +48,8 @@ class FileStorage():
              with open(self.__file_path, 'r', encoding="utf-8") as fp:
                  dict_ = json.load(fp)
                  for k, v in dict_.items():
-                     self.__objects[k] = BaseModel(**v)
+                     class_ = v['__class__']
+                     create_class = validClasses[class_]
+                     self.__objects[k] = create_class(**v)
          except:
              pass
