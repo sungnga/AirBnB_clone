@@ -33,8 +33,8 @@ class BaseModel():
     def __str__(self):
         """Method that returns a string representation of an instance"""
         return ("[{}] ({}) {}".format(self.__class__.__name__,
-                                        self.id,
-                                        self.__dict__))
+                                      self.id,
+                                      self.__dict__))
 
     def save(self):
         self.updated_at = datetime.now()
