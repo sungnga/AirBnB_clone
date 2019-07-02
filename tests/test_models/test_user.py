@@ -5,6 +5,7 @@ Module for unittests for the User class
 import unittest
 import os
 import json
+import datetime
 from models.user import User
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
@@ -38,6 +39,9 @@ class TestUserCreation(unittest.TestCase):
         self.assertIsInstance(self.x.password, str)
         self.assertIsInstance(self.x.first_name, str)
         self.assertIsInstance(self.x.last_name, str)
+        self.assertIsInstance(self.x.updated_at, datetime.datetime)
+        self.assertIsInstance(self.x.created_at, datetime.datetime)
+        self.assertIsInstance(self.x.id, str)
 
     def test_attr_values(self):
         self.assertEqual(self.x.email,
