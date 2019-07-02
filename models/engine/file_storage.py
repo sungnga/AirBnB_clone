@@ -13,17 +13,15 @@ from models.place import Place
 from models.review import Review
 
 
-validClasses = {'BaseModel': BaseModel,
-                'User': User,
-                'State': State,
-                'City': City,
-                'Amenity': Amenity,
-                'Place': Place,
-                'Review': Review}
-
-
 class FileStorage():
     """Class used for file storage actions."""
+    validClasses = {'BaseModel': BaseModel,
+                    'User': User,
+                    'State': State,
+                    'City': City,
+                    'Amenity': Amenity,
+                    'Place': Place,
+                    'Review': Review}
 
     __file_path = "file.json"
     __objects = {}
