@@ -94,6 +94,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         else:
             print("** class doesn't exist **")
+        models.storage.save()
 
     def help_destroy(self):
         """A method that allows users to get documentation on destroy."""
