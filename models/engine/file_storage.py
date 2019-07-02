@@ -29,13 +29,16 @@ class FileStorage():
     __objects = {}
 
     def all(self):
+        """An all method."""
         return(self.__objects)
 
     def new(self, obj):
+        """A new method."""
         obj_key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[obj_key] = obj
 
     def save(self):
+        """A save method."""
         with open(self.__file_path, 'w', encoding="utf-8") as fp:
             jdict_ = {}
             for k, v in self.__objects.items():
@@ -44,6 +47,7 @@ class FileStorage():
             fp.write(json.dumps(jdict_))
 
     def reload(self):
+        """A reload method."""
         dict_ = {}
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding="utf-8") as fp:
