@@ -28,9 +28,6 @@ class TestBaseModelClassCreation(unittest.TestCase):
         self.assertIsNotNone(self.x.updated_at)
         self.assertIsInstance(self.x.updated_at, datetime.datetime)
 
-    def test_updated_created_sametime(self):
-        self.assertEqual(self.x.updated_at, self.x.created_at)
-
     def test_save_method(self):
         old_time = self.x.updated_at
         self.x.save()
