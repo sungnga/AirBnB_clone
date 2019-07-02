@@ -3,6 +3,7 @@
 This module contains the FileStorage class
 """
 import json
+import os
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -44,12 +45,10 @@ class FileStorage():
 
     def reload(self):
         dict_ = {}
-        try:
+        if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding="utf-8") as fp:
                 dict_ = json.load(fp)
                 for k, v in dict_.items():
                     class_ = v['__class__']
                     create_class = validClasses[class_]
                     self.__objects[k] = create_class(**v)
-        except:
-            pass
