@@ -57,3 +57,9 @@ class TestFileStorageClassCreation(unittest.TestCase):
         self.storage.reload()
         self.assertEqual(x_id,
                          self.storage._FileStorage__objects[x_id_key].id)
+
+    def test_str_method(self):
+        string = "[{}] ({}) {}".format(self.x.__class__.__name__,
+                                       self.x.id,
+                                       self.x.__dict__)
+        self.assertEqual(string, str(self.x))
