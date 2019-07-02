@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module contains the FileStorage class
+This module contains the FileStorage class.
 """
 import json
 import os
@@ -23,22 +23,22 @@ validClasses = {'BaseModel': BaseModel,
 
 
 class FileStorage():
-    """Class used for file storage actions"""
+    """Class used for file storage actions."""
 
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """An all method."""
+        """A method that returns the dictionary __objects."""
         return(self.__objects)
 
     def new(self, obj):
-        """A new method."""
+        """Sets in __objects the obj with key <obj class name>.id"""
         obj_key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[obj_key] = obj
 
     def save(self):
-        """A save method."""
+        """A method that serializes __objects to the JSON file."""
         with open(self.__file_path, 'w', encoding="utf-8") as fp:
             jdict_ = {}
             for k, v in self.__objects.items():
@@ -47,7 +47,7 @@ class FileStorage():
             fp.write(json.dumps(jdict_))
 
     def reload(self):
-        """A reload method."""
+        """A method that deserializes the JSON file to __objects."""
         dict_ = {}
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding="utf-8") as fp:
