@@ -69,7 +69,7 @@ class TestBaseModelObjectCreation(unittest.TestCase):
                               datetime.datetime)
         self.assertFalse(self.my_model is self.my_new_model)
 
-    def test_str_classname(self):
+    def test_str_method(self):
         string = "[{}] ({}) {}".format(self.my_model.__class__.__name__,
                                        self.my_model.id,
                                        self.my_model.__dict__)
