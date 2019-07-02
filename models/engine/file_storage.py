@@ -47,7 +47,8 @@ class FileStorage():
         dict_ = {}
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding="utf-8") as fp:
-                dict_ = json.load(fp)
+                str_ = fp.read()
+                dict_ = json.loads(str_)
                 for k, v in dict_.items():
                     class_ = v['__class__']
                     create_class = validClasses[class_]
