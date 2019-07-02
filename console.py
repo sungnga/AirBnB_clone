@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
     def help_all(self):
         """A method that allows users to get documentation on all."""
         print(("A command that prints all string representation of all ") +
-              ("instances")
+              ("instances"))
 
     def do_update(self, arg):
         """A method that updates an instance based on the class name and id
@@ -166,8 +166,8 @@ class HBNBCommand(cmd.Cmd):
 
     def help_update(self):
         """A command that updates instances. Usage: update <class name> """
-        print('Usage: update <class name> \<id\> \<attribute name\> )
-        + (\"\<attribute value\>\"')
+        print(("Usage: update <class name> \<id\> \<attribute name\> \"") +
+        ("\<attribute value\>\""))
 
 
 if __name__ == '__main__':
