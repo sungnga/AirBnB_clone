@@ -27,7 +27,8 @@ class TestStateClassCreation(unittest.TestCase):
             pass
 
     def test_state_creation(self):
-        self.assertIsInstance(self.x, BaseModel)
+        self.assertTrue(issubclass(Amenity, BaseModel))
+        self.assertIsInstance(self.x, Amenity)
 
     def test_attr_type(self):
         self.assertIsInstance(self.x.name, str)
