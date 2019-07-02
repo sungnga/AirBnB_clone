@@ -31,8 +31,8 @@ class TestUserCreation(unittest.TestCase):
             pass
 
     def test_user_creation(self):
+        self.assertIsInstance(self.x, BaseModel)
         self.assertIsInstance(self.x, User)
-        self.assertTrue(issubclass(User, BaseModel))
 
     def test_attr_type(self):
         self.assertIsInstance(self.x.email, str)
@@ -42,6 +42,10 @@ class TestUserCreation(unittest.TestCase):
         self.assertIsInstance(self.x.updated_at, datetime.datetime)
         self.assertIsInstance(self.x.created_at, datetime.datetime)
         self.assertIsInstance(self.x.id, str)
+
+    def test_kwargs(self):
+        a = User(password="psswd")
+        self.assertEqual(a.password, "psswd")
 
     def test_attr_values(self):
         self.assertEqual(self.x.email,
