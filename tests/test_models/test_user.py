@@ -30,7 +30,8 @@ class TestUserCreation(unittest.TestCase):
             pass
 
     def test_user_creation(self):
-        self.assertIsInstance(self.x, BaseModel)
+        self.assertIsInstance(self.x, User)
+        self.assertTrue(issubclass(User, BaseModel))
 
     def test_attr_type(self):
         self.assertIsInstance(self.x.email, str)
