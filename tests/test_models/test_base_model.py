@@ -28,6 +28,11 @@ class TestBaseModelClassCreation(unittest.TestCase):
         self.assertIsNotNone(self.x.updated_at)
         self.assertIsInstance(self.x.updated_at, datetime.datetime)
 
+    def test_created_at_diff_updated_at(self):
+        self.assertNotEqual(self.x.updated_at, self.x.created_at)
+        time_diff = self.x.updated_at - self.x.created_at
+        self.assertTrue(time_diff.microseconds > 0)
+
     def test_save_method(self):
         old_time = self.x.updated_at
         self.x.save()
