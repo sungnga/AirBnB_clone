@@ -43,13 +43,13 @@ class FileStorage():
             fp.write(json.dumps(jdict_))
 
     def reload(self):
-         dict_ = {}
-         try:
-             with open(self.__file_path, 'r', encoding="utf-8") as fp:
-                 dict_ = json.load(fp)
-                 for k, v in dict_.items():
-                     class_ = v['__class__']
-                     create_class = validClasses[class_]
-                     self.__objects[k] = create_class(**v)
-         except:
-             pass
+        dict_ = {}
+        try:
+            with open(self.__file_path, 'r', encoding="utf-8") as fp:
+                dict_ = json.load(fp)
+                for k, v in dict_.items():
+                    class_ = v['__class__']
+                    create_class = validClasses[class_]
+                    self.__objects[k] = create_class(**v)
+        except:
+            pass
