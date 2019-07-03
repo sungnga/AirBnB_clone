@@ -98,13 +98,29 @@ class TestFileStorageClassCreation(unittest.TestCase):
 
     def test_reload_method(self):
         self.x = BaseModel()
-        x_id = self.x.id
+        self.x.custom = "Warriors"
         x_id_key = "{}.{}".format(self.x.__class__.__name__, self.x.id)
+        self.storage.new(self.x)
         self.storage.save()
         self.storage._FileStorage__objects = {}
         self.storage.reload()
-        self.assertEqual(x_id,
-                         self.storage._FileStorage__objects[x_id_key].id)
+        temp_obj = self.storage._FileStorage__objects[x_id_key]
+        self.assertEqual(self.x.id,
+                         temp_obj.id)
+        self.assertEqual(self.x.created_at,
+                         temp_obj.created_at)
+        self.assertEqual(self.x.updated_at,
+                            temp_obj.updated_at)
+        self.assertEqual(self.x.custom,
+                         temp_obj.custom)
+        self.assertIsInstance(self.x.id,
+                              str)
+        self.assertIsInstance(self.x.created_at,
+                              datetime.datetime)
+        self.assertIsInstance(self.x.updated_at,
+                              datetime.datetime)
+        self.assertIsInstance(self.x.custom,
+                              str)
 
     def test_str_method(self):
         string = "[{}] ({}) {}".format(self.x.__class__.__name__,
