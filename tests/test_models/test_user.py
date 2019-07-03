@@ -60,6 +60,10 @@ class TestUserCreation(unittest.TestCase):
     def test_has_attr(self):
         for k in self.validAttributes:
             self.assertTrue(hasattr(self.x, k))
+        self.assertTrue(hasattr(self.x, 'updated_at'))
+        self.assertTrue(hasattr(self.x, 'created_at'))
+        self.assertTrue(hasattr(self.x, 'id'))
+
 
     def test_kwargs(self):
         a = User(password="psswd")
