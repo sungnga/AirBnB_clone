@@ -11,6 +11,7 @@ from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
+
 class TestAmenityEmptyCreation(unittest.TestCase):
     """Test class for instantiating amenity"""
 
