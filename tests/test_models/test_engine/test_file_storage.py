@@ -49,6 +49,12 @@ class TestFileStorageClassCreation(unittest.TestCase):
         self.assertTrue(count != 0)
 
     def test_new_method(self):
+        x = BaseModel()
+        obj_key = "{}.{}".format(x.__class__.__name__, x.id)
+        self.storage.new(x)
+        self.assertTrue(obj_key in self.storage._FileStorage__objects)
+        
+    def test_new_method_1(self):
         count = len(self.storage.all())
         y = BaseModel()
         new_count = len(self.storage.all())
