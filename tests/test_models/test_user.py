@@ -83,8 +83,8 @@ class TestUserCreation(unittest.TestCase):
     #         test_attr = getattr(self.dict_, k)
     #         self.assertIsInstance(test_attr, v)
 
-    def test_str_method(self):
-        string = "[{}] ({}) {}".format(self.x.__class__.__name__,
-                                       self.x.id,
-                                       self.x.__dict__)
-        self.assertEqual(string, str(self.x))
+    # def test_str_method(self):
+    #     string = "[{}] ({}) {}".format(self.x.__class__.__name__,
+    #                                    self.x.id,
+    #                                    self.x.__dict__)
+    #     self.assertEqual(string, str(self.x))
