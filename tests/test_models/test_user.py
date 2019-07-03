@@ -77,7 +77,6 @@ class TestUserCreation(unittest.TestCase):
         key = "{}.{}".format(self.x.__class__.__name__, self.x.id)
         self.assertTrue(key in self.dict_)
 
-
     def test_instance_storage_attrs(self):
         key = "{}.{}".format(self.x.__class__.__name__, self.x.id)
         self.x.save()
