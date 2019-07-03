@@ -12,7 +12,6 @@ from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
 
-
 class TestPlaceCreation(unittest.TestCase):
     """Test class for instantiating amenity"""
 
