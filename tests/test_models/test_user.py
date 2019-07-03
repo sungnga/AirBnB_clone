@@ -45,6 +45,9 @@ class TestUserCreation(unittest.TestCase):
         self.assertIsInstance(self.x, BaseModel)
         self.assertIsInstance(self.x, User)
 
+    def test_is_classname(self):
+        self.assertEqual(self.x.__class__.__name__, "User")
+
     def test_attr_type(self):
         self.assertIsInstance(self.x.email, str)
         self.assertIsInstance(self.x.password, str)
@@ -73,6 +76,7 @@ class TestUserCreation(unittest.TestCase):
     def test_instance_is_in_storage(self):
         key = "{}.{}".format(self.x.__class__.__name__, self.x.id)
         self.assertTrue(key in self.dict_)
+
 
     def test_instance_storage_attrs(self):
         key = "{}.{}".format(self.x.__class__.__name__, self.x.id)
