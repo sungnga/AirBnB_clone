@@ -76,9 +76,7 @@ class TestUserCreation(unittest.TestCase):
 
     def test_instance_storage_attrs(self):
         key = "{}.{}".format(self.x.__class__.__name__, self.x.id)
-        for k, v in self.validAttributes.items():
-            test_attr = getattr(self.dict_, k)
-            self.assertIsInstance(test_attr, v)
+        self.x.save()
 
     def test_str_method(self):
         string = "[{}] ({}) {}".format(self.x.__class__.__name__,
