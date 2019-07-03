@@ -129,3 +129,7 @@ class TestUserCreation(unittest.TestCase):
         self.assertIsInstance(dict_['created_at'], str)
         self.assertEqual(dict_['__class__'],
                          self.x.__class__.__name__)
+
+
+if __name__ == '__main__':
+    unittest.main()
