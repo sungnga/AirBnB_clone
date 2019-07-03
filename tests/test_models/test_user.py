@@ -23,12 +23,23 @@ class TestUserCreation(unittest.TestCase):
         self.x.save()
         self.fp = open('file.json', 'r', encoding="utf-8")
         self.dict_ = json.load(self.fp)
+        self.validAttributes = {
+            'email': str,
+            'password': str,
+            'first_name': str,
+            'last_name': str
+            }
 
     def tearDown(self):
         try:
             self.fp.close()
         except:
             pass
+
+    def test_test_all_attrs(self):
+        for k, v in self.validAttributes.items():
+            test_attr = getattr(self.x, k)
+            self.assertIsInstance(test_attr, v)
 
     def test_user_creation(self):
         self.assertIsInstance(self.x, BaseModel)
@@ -62,6 +73,12 @@ class TestUserCreation(unittest.TestCase):
     def test_instance_is_in_storage(self):
         key = "{}.{}".format(self.x.__class__.__name__, self.x.id)
         self.assertTrue(key in self.dict_)
+
+    def test_instance_storage_attrs(self):
+        key = "{}.{}".format(self.x.__class__.__name__, self.x.id)
+        for k, v in self.validAttributes.items():
+            test_attr = getattr(self.dict_, k)
+            self.assertIsInstance(test_attr, v)
 
     def test_str_method(self):
         string = "[{}] ({}) {}".format(self.x.__class__.__name__,

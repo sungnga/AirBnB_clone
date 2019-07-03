@@ -33,6 +33,10 @@ class TestFileStorageClassCreation(unittest.TestCase):
     def test_inheritance(self):
         self.assertIsInstance(self.fs, FileStorage)
 
+    def test_fs_has_class_attributes(self):
+        self.assertIsInstance(self.fs._FileStorage__file_path, str)
+        self.assertIsInstance(self.fs._FileStorage__objects, dict)
+
     def test_all_method(self):
         count = len(self.storage.all())
         self.assertTrue(count != 0)

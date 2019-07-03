@@ -163,12 +163,12 @@ class HBNBCommand(cmd.Cmd):
                         except:
                             print("You can't cast to type: {}".format(type_))
                     except:
-                        setattr(instance, args[2], args[3])
+                        setattr(instance, args[2], str(args[3]))
 
     def help_update(self):
         """A command that updates instances. Usage: update <class name> """
         print(("Usage: update <class name> \<id\> \<attribute name\> \"") +
-        ("\<attribute value\>\""))
+              ("\<attribute value\>\""))
 
 
 if __name__ == '__main__':
