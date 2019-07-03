@@ -11,6 +11,15 @@ import models
 class BaseModel():
     """Class representing the BaseModel Class"""
 
+    validAttributes = {
+        "User": {
+            'first_name': str,
+            'last_name': str,
+            'email': str,
+            'password': str,
+        }
+    }
+
     def __init__(self, *args, **kwargs):
         # create uuid when instance is initialized and convert to string
         if len(kwargs) is not 0:
@@ -21,7 +30,6 @@ class BaseModel():
                             datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
                 elif key == '__class__':
                     continue
-
                 else:
                     setattr(self, key, value)
         else:
