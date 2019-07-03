@@ -57,6 +57,10 @@ class TestUserCreation(unittest.TestCase):
         self.assertIsInstance(self.x.created_at, datetime.datetime)
         self.assertIsInstance(self.x.id, str)
 
+    def test_has_attr(self):
+        for k in self.validAttributes:
+            self.assertTrue(hasattr(self.x, k))
+
     def test_kwargs(self):
         a = User(password="psswd")
         self.assertEqual(a.password, "psswd")
