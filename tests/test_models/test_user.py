@@ -95,6 +95,7 @@ class TestUserCreation(unittest.TestCase):
         self.assertEqual(string, str(self.x))
 
     def test_id_creation(self):
+        self.x = User()
         self.assertIsNotNone(self.x.id)
         self.assertEqual(36, len(self.x.id))
         self.assertIsInstance(self.x.id, str)
@@ -114,12 +115,14 @@ class TestUserCreation(unittest.TestCase):
         self.assertTrue(time_diff.microseconds > 0)
 
     def test_save_method(self):
+        self.x = User()
         old_time = self.x.updated_at
         self.x.save()
         self.assertNotEqual(old_time, self.x.updated_at)
         self.assertIsInstance(self.x.updated_at, datetime.datetime)
 
     def test_to_dict_method(self):
+        self.x = User()
         dict_ = self.x.to_dict()
         self.assertIsInstance(dict_, dict)
         self.assertIsInstance(dict_['updated_at'], str)
