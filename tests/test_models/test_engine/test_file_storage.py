@@ -44,7 +44,27 @@ class TestFileStorageClassCreation(unittest.TestCase):
         self.assertIsInstance(self.storage._FileStorage__file_path, str)
         self.assertIsInstance(self.storage._FileStorage__objects, dict)
 
+    def test_fs_attributes_private(self):
+        fs = FileStorage()
+        with self.assertRaises(Exception):
+            fs.__objects
+        with self.assertRaises(Exception):
+            fs.__file_path
+        with self.assertRaises(Exception):
+            getattr(fs, '__objects')
+        with self.assertRaises(Exception):
+            getattr(fs, '__file_path')
+
+    def test_creation_with_arg(self):
+        with self.assertRaises(Exception):
+            fs = FileStorage(3)
+        with self.assertRaises(Exception):
+            fs = FileStorage("hello")
+        with self.assertRaises(Exception):
+            fs = FileStorage([])
+
     def test_all_method(self):
+        self.assertIsInstance(self.storage.all(), dict)
         count = len(self.storage.all())
         self.assertTrue(count != 0)
 
@@ -53,7 +73,13 @@ class TestFileStorageClassCreation(unittest.TestCase):
         obj_key = "{}.{}".format(x.__class__.__name__, x.id)
         self.storage.new(x)
         self.assertTrue(obj_key in self.storage._FileStorage__objects)
-        
+        self.assertIsInstance(self.storage._FileStorage__objects[obj_key],
+                              BaseModel)
+        temp_bm = self.storage._FileStorage__objects[obj_key]
+        self.assertEqual(temp_bm.__class__.__name__,
+                         'BaseModel')
+        self.assertEqual(temp_bm.id, x.id)
+
     def test_new_method_1(self):
         count = len(self.storage.all())
         y = BaseModel()
@@ -64,12 +90,14 @@ class TestFileStorageClassCreation(unittest.TestCase):
         self.assertTrue(hasattr(y, 'updated_at'))
 
     def test_save_method(self):
-        self.assertIsInstance(self.storage._FileStorage__objects, dict)
+        # self.assertIsInstance(self.storage._FileStorage__objects, dict)
+        self.x = BaseModel()
         self.storage.save()
         self.assertTrue(os.path.exists(self.file))
         self.assertTrue(os.stat(self.file).st_size != 0)
 
     def test_reload_method(self):
+        self.x = BaseModel()
         x_id = self.x.id
         x_id_key = "{}.{}".format(self.x.__class__.__name__, self.x.id)
         self.storage.save()
