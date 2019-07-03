@@ -110,7 +110,7 @@ class TestFileStorageClassCreation(unittest.TestCase):
         self.assertEqual(self.x.created_at,
                          temp_obj.created_at)
         self.assertEqual(self.x.updated_at,
-                            temp_obj.updated_at)
+                         temp_obj.updated_at)
         self.assertEqual(self.x.custom,
                          temp_obj.custom)
         self.assertIsInstance(self.x.id,

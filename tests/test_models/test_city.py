@@ -12,8 +12,8 @@ from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
 
-class TestPlaceCreation(unittest.TestCase):
-    """Test class for instantiating amenity"""
+class TestCityCreation(unittest.TestCase):
+    """Test class for instantiating city"""
 
     def setUp(self):
         self.file = 'file.json'

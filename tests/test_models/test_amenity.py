@@ -54,19 +54,19 @@ class TestAmenityEmptyCreation(unittest.TestCase):
         self.assertEqual(self.x.custom_attr, "Nga")
         self.assertIsInstance(self.x.custom_attr, str)
 
-    #TODO: This fails occasionally
+    # TODO: This fails occasionally
     def test_save_time_change(self):
         old_time = self.x.updated_at
         self.x.save()
         self.assertNotEqual(self.x.updated_at, old_time)
 
-    def test_new_user_dict(self):
+    def test_new_amenity_dict(self):
         self.x.name = "pool"
         dict_ = self.x.to_dict()
         self.y = Amenity(**dict_)
         self.assertEqual(self.x.name, self.y.name)
 
-    def test_new_user_dict_attr_types(self):
+    def test_new_amenity_dict_attr_types(self):
         self.x.name = "pool"
         dict_ = self.x.to_dict()
         self.y = Amenity(**dict_)
@@ -80,7 +80,7 @@ class TestAmenityEmptyCreation(unittest.TestCase):
         self.assertTrue(os.path.exists(self.file))
         self.assertTrue(os.stat(self.file).st_size != 0)
 
-    def test_reload_user(self):
+    def test_reload_amenity(self):
         x_id = self.x.id
         x_id_key = "{}.{}".format(self.x.__class__.__name__, self.x.id)
         self.storage.save()

@@ -13,7 +13,7 @@ from models.engine.file_storage import FileStorage
 
 
 class TestPlaceCreation(unittest.TestCase):
-    """Test class for instantiating amenity"""
+    """Test class for instantiating place"""
 
     def setUp(self):
         self.file = 'file.json'

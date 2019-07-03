@@ -11,6 +11,7 @@ from models.user import User
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
+
 class TestUserCreationEmpty(unittest.TestCase):
     """Test class for instantiating empty user"""
 
@@ -62,7 +63,7 @@ class TestUserCreationEmpty(unittest.TestCase):
         self.assertEqual(self.x.custom_attr, "Nga")
         self.assertIsInstance(self.x.custom_attr, str)
 
-    #TODO: This fails occasionally
+    # TODO: This fails occasionally
     def test_save_time_change(self):
         old_time = self.x.updated_at
         self.x.save()
@@ -106,6 +107,7 @@ class TestUserCreationEmpty(unittest.TestCase):
         self.assertEqual(x_id,
                          self.storage._FileStorage__objects[x_id_key].id)
 
+
 class TestUserCreation(unittest.TestCase):
     """Test class for User class instantiation tests"""
 
@@ -139,7 +141,6 @@ class TestUserCreation(unittest.TestCase):
             os.remove(self.file)
         except:
             pass
-
 
     def test_test_all_attrs(self):
         for k, v in self.validAttributes.items():
@@ -233,7 +234,3 @@ class TestUserCreation(unittest.TestCase):
         self.assertIsInstance(dict_['created_at'], str)
         self.assertEqual(dict_['__class__'],
                          self.x.__class__.__name__)
-
-
-if __name__ == '__main__':
-    unittest.main()
