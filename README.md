@@ -1,9 +1,8 @@
 # AirBnB Clone - The Console
 A Holberton School project of AirBnB clone
 
-<p align="center">
+
 ![](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/263/HBTN-hbnb-Final.png)
-</p>
 
 
 ## Description
