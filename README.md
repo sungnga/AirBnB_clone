@@ -79,7 +79,8 @@ Command | Description
 
 
 ## Models
-The [models](./models/) folder contains all the classes used in this project.
+* The [models](./models/) folder contains all the classes used in this project.
+
 
 File | Description | Attributes
 --- | --- | ---
@@ -93,16 +94,16 @@ File | Description | Attributes
 
 
 ## File Storage
-The folder [engine](./models/engine/) manages the serialization and deserialization process of all the data for all the classes in this project.
+* The folder [engine](./models/engine/) manages the serialization and deserialization process of all the data for all the classes in this project.
 
 
 ## Tests
 * All the codes are tested with the Python unit testing module - unittest.
-* The tests for the classes in the [test_models](./tests/test_models/) folder.
+* The test for the classes is in the [test_models](./tests/test_models/) folder.
 
 
 ## About
-The files are interpreted/compiled on `Ubuntu 14.04 LTS` using `python3`.
+* The files are interpreted/compiled on `Ubuntu 14.04 LTS` using `python3`.
 
 ---
 
