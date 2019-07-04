@@ -17,20 +17,20 @@ from models.review import Review
 storage = models.storage._FileStorage__objects
 
 validClasses = {'BaseModel': BaseModel,
-                    'User': User,
-                    'State': State,
-                    'City': City,
-                    'Amenity': Amenity,
-                    'Place': Place,
-                    'Review': Review}
+                'User': User,
+                'State': State,
+                'City': City,
+                'Amenity': Amenity,
+                'Place': Place,
+                'Review': Review}
 
 validClassStrings = {'BaseModel': 'BaseModel',
-                    'User': 'User',
-                    'State': 'State',
-                    'City': 'City',
-                    'Amenity': 'Amenity',
-                    'Place': 'Place',
-                    'Review': 'Review'}
+                     'User': 'User',
+                     'State': 'State',
+                     'City': 'City',
+                     'Amenity': 'Amenity',
+                     'Place': 'Place',
+                     'Review': 'Review'}
 
 validCommands = {'all()': 'all'}
 
@@ -52,10 +52,9 @@ def all(arg, empty):
     else:
         return
 
+
 def count(arg, empty):
-    """
-    Prints the number of instances in of a class
-    """
+    """Prints the number of instances in of a class"""
 
     count = 0
     if arg in validClasses:
@@ -63,6 +62,7 @@ def count(arg, empty):
             if arg in key:
                 count = count + 1
     print(count)
+
 
 def show(class_name, arg):
     """A method that shows instance information."""
@@ -76,6 +76,7 @@ def show(class_name, arg):
             print("** no instance found **")
     else:
         print("** class doesn't exist **")
+
 
 def destroy(class_name, arg):
     """

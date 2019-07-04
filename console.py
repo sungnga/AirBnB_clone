@@ -27,12 +27,12 @@ class HBNBCommand(cmd.Cmd):
                     'Review': Review}
 
     validClassStrings = {'BaseModel': 'BaseModel',
-                    'User': 'User',
-                    'State': 'State',
-                    'City': 'City',
-                    'Amenity': 'Amenity',
-                    'Place': 'Place',
-                    'Review': 'Review'}
+                         'User': 'User',
+                         'State': 'State',
+                         'City': 'City',
+                         'Amenity': 'Amenity',
+                         'Place': 'Place',
+                         'Review': 'Review'}
 
     validCommands = {'all': ah.all,
                      'count': ah.count,
@@ -47,9 +47,7 @@ class HBNBCommand(cmd.Cmd):
             class_name = HBNBCommand.validClassStrings[args[0]]
             arg = args[1][args[1].find("(")+1:args[1].find(")")]
             command = args[1][:args[1].find("(")]
-            print(command)
             command = HBNBCommand.validCommands[command]
-            print(arg)
             command(class_name, arg)
         except:
             return(cmd.Cmd.default(self, arg))
