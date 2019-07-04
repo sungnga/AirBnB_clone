@@ -5,6 +5,7 @@ This is a module for HBNBCommand class.
 import shlex
 import cmd
 import models
+import advanced_helpers as ah
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -25,7 +26,33 @@ class HBNBCommand(cmd.Cmd):
                     'Place': Place,
                     'Review': Review}
 
+    validClassStrings = {'BaseModel': 'BaseModel',
+                    'User': 'User',
+                    'State': 'State',
+                    'City': 'City',
+                    'Amenity': 'Amenity',
+                    'Place': 'Place',
+                    'Review': 'Review'}
+
+    validCommands = {'all': ah.all,
+                     'count': ah.count,
+                     'show': ah.show,
+                     'destroy': ah.destroy}
+
     objects_dict = models.storage._FileStorage__objects
+
+    def default(self, arg):
+        args = arg.split(".")
+        try:
+            class_name = HBNBCommand.validClassStrings[args[0]]
+            arg = args[1][args[1].find("(")+1:args[1].find(")")]
+            command = args[1][:args[1].find("(")]
+            print(command)
+            command = HBNBCommand.validCommands[command]
+            print(arg)
+            command(class_name, arg)
+        except:
+            return(cmd.Cmd.default(self, arg))
 
     def do_quit(self, s):
         """A method that allows users to quit."""
@@ -109,6 +136,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args = shlex.split(arg)
         ret_list = []
+
         if not arg:
             for class_name_key in self.validClasses:
                 for key in HBNBCommand.objects_dict:
@@ -118,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             if args[0] in self.validClasses:
                 for key in HBNBCommand.objects_dict:
-                    if arg[0] in key:
+                    if args[0] in key:
                         ret_list.append(str(HBNBCommand.objects_dict[key]))
                 print(ret_list)
             else:
