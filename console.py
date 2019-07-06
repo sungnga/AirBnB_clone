@@ -193,8 +193,8 @@ class HBNBCommand(cmd.Cmd):
 
     def help_update(self):
         """A command that updates instances. Usage: update <class name> """
-        print(("Usage: update <class name> \<id\> \<attribute name\> \"") +
-              ("\<attribute value\>\""))
+        print(("Usage: update <class name> <id> <attribute name> ") +
+              ("<attribute value>"))
 
 
 if __name__ == '__main__':
